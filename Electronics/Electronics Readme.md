@@ -2,6 +2,6 @@
 
 ## Objectives
 
-* ...
+* Routing wires
 
 ## Progress
