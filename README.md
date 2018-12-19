@@ -1,4 +1,4 @@
-# Gemini-Project
+﻿# Gemini-Project
 Building a 3D printer with dual independent extruders.
 
 ## Main contributors
@@ -12,4 +12,5 @@ Building a 3D printer with dual independent extruders.
 | Antonio        | Pablo          | Miguel         | Fernando       | Pablo          |
 | Ángel          | Andrés         | Andrés         | Pablo V        | Andrés         |
 | Fernando       | Roberto B.     | Roberto B      | Antonio        | Ana            |
-| Roberto B      | Ana            |                | Miguel         | Ángel          |
+| Roberto B      | Ana            | Andrea V       | Miguel         | Ángel          |
+|	         |		  |		   | Andrea V	    |		     |
