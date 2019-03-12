@@ -2,6 +2,6 @@
 
 ## Objectives
 
-* ...
+* Design the bed plate
 
 ## Progress
