@@ -62,7 +62,7 @@
 */
 
 // This determines the communication speed of the printer
-#define BAUDRATE 115200
+//#define BAUDRATE 115200
 
 #ifndef MOTHERBOARD
 #define MOTHERBOARD 80
@@ -163,7 +163,7 @@
 #define EXTRUDERS 2
 
 // Generally expected filament diameter (1.75, 2.85, 3.0, ...). Used for Volumetric, Filament Width Sensor, etc.
-#define DEFAULT_NOMINAL_FILAMENT_DIA 3.0
+#define DEFAULT_NOMINAL_FILAMENT_DIA 1.75
 
 // For Cyclops or any "multi-extruder" that shares a single nozzle.
 //#define SINGLENOZZLE
@@ -615,16 +615,15 @@
    following movement settings. If fewer factors are given than the
    total number of extruders, the last value applies to the rest.
 */
-//#define DISTINCT_E_FACTORS
+#define DISTINCT_E_FACTORS
 
 /**
    Default Axis Steps Per Unit (steps/mm)
    Override with M92
                                         X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
 */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 200, 200, 800, 340 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 200, 200, 800, 340 , 340}
 //TODO:REVISAR EL ULTIMO NUMERO EN FUNCIÓN DEL DIAMETRO DE LA POLEA DEL EXTRUSOR
-//REVISAR: EN TEORÍA HABRÍA QUE MARCAR EL VALOR DE E0 Y E1, PERO SOLO DEJA PONER UNO
 
 /**
    Default Max Feed Rate (mm/s)
