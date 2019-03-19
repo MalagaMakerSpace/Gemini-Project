@@ -47,9 +47,9 @@ Steps_per_mm = (32 \* 200) / (16 \* 2) = 200 steps/mm
 Steps_per_mm = (32 \* 200) / 8 = 800 steps/mm
 
 #### Extruders
-————————————————————————————————
+
 TODO: Cálculos provisionales, suponiendo un diámetro de 6mm para la polea
-————————————————————————————————
+
 
 Steps_per_mm = (32 \* 200) / (3.14 \* 6) ~= 340 steps/mm
 
@@ -58,6 +58,32 @@ Se establece con la línea:
 > #define DEFAULT_AXIS_STEPS_PER_UNIT   { 200, 200, 800, 340 , 340}
 Para poder definir de forma separada los pasos para cada extrusor, se descomenta la línea:
 > #define DISTINCT_E_FACTORS
+
+
+#### Finales de carrera
+
+Los finales de carrera aún no están conectados. El conexionado se puede hacer de forma que:
+* Normalmente esté abierto (Interruptor normal)(NO).
+* Normalmente cerrado (NC).
+
+Para mayor seguridad, lo ideal sería conectarlos en NC para que en caso de fallo de conexión, la máquina no sea capaz de girar, en lugar de no ser capaz de detectar el pulso de final de carrera.
+
+Marlin por defecto utiliza la configuración NC, por lo que en caso de utilizar esta conexión no habría que invertir la lógica de los finales de carrera. Para ello, se debe asegurar que en el script no estén invertidos e “INVERTING” está en false.
+
+#define X_MIN_ENDSTOP_INVERTING false #define Y_MIN_ENDSTOP_INVERTING false #define Z_MIN_ENDSTOP_INVERTING false #define X_MAX_ENDSTOP_INVERTING false #define Y_MAX_ENDSTOP_INVERTING false #define Z_MAX_ENDSTOP_INVERTING false #define Z_MIN_PROBE_ENDSTOP_INVERTING false
+
+
+#### SENTIDO DE GIRO DE LOS MOTORES
+
+Se debe considerar que el motor de la cama debe girar en sentido contrario al lógico, pues para avanzar, este motor debe moverse hacia atrás.
+
+Como aún no están conectados, se pueden tomar 2 soluciones: 
+* Conectar todos los motores en el mismo sentido y mediante código cambiar el sentido de giro (solución tomada en Marlin).
+* Rotar el conector del motor deseado.
+
+Para evitar posibles problemas en el conexionado, lo lógico sería conectar todos los motores de igual modo y mediante el código cambiar el sentido de giro.
+
+Para ello, solo habrá que declarar como “true”: “#define INVERT_Y_DIR true“ (donde Y será el eje en cuestión).
 
 ## To do
 
