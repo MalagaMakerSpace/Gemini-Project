@@ -630,7 +630,11 @@
    Override with M203
                                         X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
 */
-#define DEFAULT_MAX_FEEDRATE          { 300, 300, 5, 25 }
+#define DEFAULT_MAX_FEEDRATE          { 200, 200, 5, 25 }
+/** 
+ * En un tutorial explica que mejor bajar de 300 a 200 para disminuir la probabilidad 
+ * de que el motor se salte algún paso (e igulamente sigue alimentando de manera rápida).
+ */ 
 
 /**
    Default Max Acceleration (change/s) change = mm/s
