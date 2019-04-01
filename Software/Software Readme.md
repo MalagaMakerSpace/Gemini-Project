@@ -85,6 +85,15 @@ Para evitar posibles problemas en el conexionado, lo lógico sería conectar tod
 
 Para ello, solo habrá que declarar como “true”: “#define INVERT_Y_DIR true“ (donde Y será el eje en cuestión).
 
+
+#### AUTOLEVEL
+
+Para implementar el autonivelado, se han descomentado las líneas:
+
+"#define AUTO_BED_LEVELING_BILINEAR", "#define LCD_BED_LEVELING" y "#define PROBE_MANUALLY" 
+
+Para un autonivelado bilinear y para poder controlar la altura de la cama al extrusor durante la calibración.
+
 ## To do
 
 * Comprobar eje Z
