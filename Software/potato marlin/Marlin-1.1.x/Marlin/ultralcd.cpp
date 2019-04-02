@@ -744,6 +744,8 @@ void lcd_status_screen() {
   lcd_implementation_status_screen();
 }
 
+
+
 /**
  * Reset the status message
  */
@@ -765,6 +767,161 @@ void lcd_reset_status() {
 
   lcd_setstatusPGM(msg, -1);
 }
+
+//-------------------------------------------------------------------------------
+//
+// MIERDA MAKER AÑADIDA: PUEDE ESTAR MAL Y SE PUEDE CAMBIAR
+//
+//-------------------------------------------------------------------------------
+/*
+static inline bool pgm_is_whitespace(const char *c_addr)
+{
+    const char c = pgm_read_byte(c_addr);
+    return c == ' ' || c == '\t' || c == '\r' || c == '\n';
+}
+
+static inline bool pgm_is_interpunction(const char *c_addr)
+{
+    const char c = pgm_read_byte(c_addr);
+    return c == '.' || c == ',' || c == ':'|| c == ';' || c == '?' || c == '!' || c == '/';
+}
+*/
+/**
+ * @brief show full screen message
+ *
+ * This function is non-blocking
+ * @param msg message to be displayed from PROGMEM
+ * @param nlines
+ * @return rest of the text (to be displayed on next page)
+ */
+ /*
+static const char* lcd_display_message_fullscreen_nonBlocking_P(const char *msg, uint8_t &nlines)
+{
+    //lcd_set_cursor(0, 0);
+    const char *msgend = msg;
+    uint8_t row = 0;
+    bool multi_screen = false;
+    for (; row < 4; ++ row) {
+        while (pgm_is_whitespace(msg))
+            ++ msg;
+        if (pgm_read_byte(msg) == 0)
+            // End of the message.
+            break;
+        //lcd_set_cursor(0, row);
+        uint8_t linelen = min(strlen_P(msg), 20);
+        const char *msgend2 = msg + linelen;
+        msgend = msgend2;
+        if (row == 3 && linelen == 20) {
+            // Last line of the display, full line shall be displayed.
+            // Find out, whether this message will be split into multiple screens.
+            while (pgm_is_whitespace(msgend))
+                ++ msgend;
+            multi_screen = pgm_read_byte(msgend) != 0;
+            if (multi_screen)
+                msgend = (msgend2 -= 2);
+        }
+        if (pgm_read_byte(msgend) != 0 && ! pgm_is_whitespace(msgend) && ! pgm_is_interpunction(msgend)) {
+            // Splitting a word. Find the start of the current word.
+            while (msgend > msg && ! pgm_is_whitespace(msgend - 1))
+                 -- msgend;
+            if (msgend == msg)
+                // Found a single long word, which cannot be split. Just cut it.
+                msgend = msgend2;
+        }
+        for (; msg < msgend; ++ msg) {
+            char c = char(pgm_read_byte(msg));
+            if (c == '~')
+                c = ' ';
+            lcd_print(c);
+        }
+    }
+
+    if (multi_screen) {
+        // Display the "next screen" indicator character.
+        // lcd_set_custom_characters_arrows();
+        //lcd_set_custom_characters_nextpage();
+        //lcd_set_cursor(19, 3);
+        // Display the down arrow.
+        lcd_print(char(1));
+    }
+
+    nlines = row;
+    return multi_screen ? msgend : NULL;
+}*/
+/*
+const char* lcd_display_message_fullscreen_P(const char *msg, uint8_t &nlines)
+{
+    // Disable update of the screen by the usual lcd_update(0) routine.
+    //lcd_update_enable(false);
+    lcd_clear();
+//  uint8_t nlines;
+    return lcd_display_message_fullscreen_nonBlocking_P(msg, nlines);
+}*/
+
+/**
+ * @brief show full screen message and wait
+ *
+ * This function is blocking.
+ * @param msg message to be displayed from PROGMEM
+ */
+ /*
+void lcd_show_fullscreen_message_and_wait_P(const char *msg)
+{
+    //LcdUpdateDisabler lcdUpdateDisabler;
+    const char *msg_next = lcd_display_message_fullscreen_P(msg);
+    bool multi_screen = msg_next != NULL;
+  //lcd_set_custom_characters_nextpage();
+  lcd_consume_click();
+  KEEPALIVE_STATE(PAUSED_FOR_USER);
+  // Until confirmed by a button click.
+  for (;;) {
+    if (!multi_screen) {
+      //lcd_set_cursor(19, 3);
+      // Display the confirm char.
+      lcd_print(char(2));
+    }
+        // Wait for 5 seconds before displaying the next text.
+        for (uint8_t i = 0; i < 100; ++ i) {
+            delay_keep_alive(50);
+            if (lcd_clicked()) {
+        if (msg_next == NULL) {
+          KEEPALIVE_STATE(IN_HANDLER);
+          lcd_set_custom_characters();
+          //lcd_update_enable(true);
+          lcd_update(2);
+          return;
+        }
+        else {
+          break;
+        }
+            }
+        }
+        if (multi_screen) {
+            if (msg_next == NULL)
+                msg_next = msg;
+            msg_next = lcd_display_message_fullscreen_P(msg_next);
+      if (msg_next == NULL) {
+
+        //lcd_set_cursor(19, 3);
+        // Display the confirm char.
+        lcd_print(char(2));
+      }
+        }
+    }
+}*/
+
+void lcd_potato_menu() {
+      START_MENU();
+
+      MENU_BACK(MSG_MAIN); // ^ Main
+
+      MENU_ITEM(gcode, "Ciencia", PSTR(""));
+      END_MENU();
+}
+
+
+//-------------------------------------------------------------------------------
+
 
 /**
  *
@@ -1097,6 +1254,9 @@ void lcd_quick_feedback(const bool clear_buttons) {
     #if HAS_DEBUG_MENU
       MENU_ITEM(submenu, MSG_DEBUG_MENU, lcd_debug_menu);
     #endif
+
+    
+    MENU_ITEM(submenu, "Pouteito", lcd_potato_menu);
 
     //
     // Set Case light on/off/brightness
