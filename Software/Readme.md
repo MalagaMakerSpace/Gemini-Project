@@ -75,9 +75,13 @@ Marlin por defecto utiliza la configuración NC, por lo que en caso de utilizar 
 #define Y_MIN_ENDSTOP_INVERTING false
 
 #define Z_MIN_ENDSTOP_INVERTING false
+
 #define X_MAX_ENDSTOP_INVERTING false
+
 #define Y_MAX_ENDSTOP_INVERTING false
+
 #define Z_MAX_ENDSTOP_INVERTING false
+
 #define Z_MIN_PROBE_ENDSTOP_INVERTING false
 
 
