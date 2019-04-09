@@ -70,7 +70,15 @@ Para mayor seguridad, lo ideal sería conectarlos en NC para que en caso de fall
 
 Marlin por defecto utiliza la configuración NC, por lo que en caso de utilizar esta conexión no habría que invertir la lógica de los finales de carrera. Para ello, se debe asegurar que en el script no estén invertidos e “INVERTING” está en false.
 
-#define X_MIN_ENDSTOP_INVERTING false #define Y_MIN_ENDSTOP_INVERTING false #define Z_MIN_ENDSTOP_INVERTING false #define X_MAX_ENDSTOP_INVERTING false #define Y_MAX_ENDSTOP_INVERTING false #define Z_MAX_ENDSTOP_INVERTING false #define Z_MIN_PROBE_ENDSTOP_INVERTING false
+#define X_MIN_ENDSTOP_INVERTING false
+
+#define Y_MIN_ENDSTOP_INVERTING false
+
+#define Z_MIN_ENDSTOP_INVERTING false
+#define X_MAX_ENDSTOP_INVERTING false
+#define Y_MAX_ENDSTOP_INVERTING false
+#define Z_MAX_ENDSTOP_INVERTING false
+#define Z_MIN_PROBE_ENDSTOP_INVERTING false
 
 
 #### SENTIDO DE GIRO DE LOS MOTORES
