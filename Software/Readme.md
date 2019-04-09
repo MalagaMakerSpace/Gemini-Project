@@ -105,17 +105,16 @@ Para buscar como hacer la calibración y la configuración correcta del menú, n
 ## To do
 
 * Comprobar eje Z
-
-~~Comprobar "Invertir la lógica del final de carrera" e "Invertir sentido de giro del motor"~~
 * Comprobar pasos por mm de cada eje (Comprobar que se mueve según lo calculado)
 * Comprobar especialmente pasos por mm del extrusor.
-~~Configuración del auto nivelado de la cama~~
 * Comprobar "X2_MAX_POS", para definir con exactitud esta medida.
-~~Configuración del auto nivelado de la cama~~
-~~Comprobar "Invertir la lógica del final de carrera" e "Invertir sentido de giro del motor"~~
-~~Decidir que modo de uso del eje X utilizar (FULL_CONTROL, AUTO_PARK o DUPLICATION).~~
 
+## Done
 
+* Comprobar "Invertir la lógica del final de carrera" e "Invertir sentido de giro del motor".
+* Configuración del auto nivelado de la cama.
+* Comprobar "Invertir la lógica del final de carrera" e "Invertir sentido de giro del motor".
+* Decidir que modo de uso del eje X utilizar (FULL_CONTROL, AUTO_PARK o DUPLICATION).
 
 ## Pruebas
 
